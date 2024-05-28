@@ -36,8 +36,14 @@ function App() {
   }
 
   function selectsFavorite(id){
+
+    // setFavoriteSnack(id)
+
+    // we only have access to the id and the snacksArray
+    // we want to set the favorite snack state variable to entire obj
+    let favSnackObj = snacks.find(snack=>snack.id==id)
     console.log(id)
-    setFavoriteSnack(id)
+    setFavoriteSnack(favSnackObj.name)
 
   }
 
