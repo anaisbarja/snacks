@@ -4,15 +4,31 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { snacksList } from './snacks'
 
+
+function Card({id,name,count, selectsFavorite}){
+  return(
+    // <h1>Snack card here</h1>
+    <div className="card" key={id} onClick={()=>selectsFavorite(id)}>
+      <p>id: {id} </p>
+      <p>name: {name}</p>
+      <p>count: {count}</p>
+    </div>
+  )
+}
+// use destructing instead! send me your code on slack
+
+
 function App() {
 
   // let favoriteSnack = "pringles"
   // let snackCount = 0
+
   //       value     update function     initial value
   const [snackCount, setSnackCount]= useState(0)
   const [snacks, setSnacks]= useState(snacksList)
   const [favoriteSnack, setFavoriteSnack] = useState(null)
   console.log(snacksList)
+
 
   function updateCount(){
     // snackCount+=1
@@ -61,15 +77,22 @@ function App() {
     {/* <p>hello {favoriteSnack}</p> */}
     <p>snack count {snackCount}</p>
     <button onClick={updateCount}>update count</button>
+
+    {/*  */}
+    {/* <Card id={150} name={"popcorn"} count={20} /> */}
+    {/* try mapping to create all your card components at once! */}
+
+  {/* 
+  props={
+    id:150,
+    name:"popcorn",
+    count:20
+  }
+  */}
+  
     {
       snacks.map(({id,name,count})=>{
-        return(
-          <div className="card" key={id} onClick={()=>selectsFavorite(id)}>
-            <p>id: {id} </p>
-            <p>name: {name}</p>
-            <p>count: {count}</p>
-          </div>
-        )
+        return <Card key={id} id={id} name={name} count={count} selectsFavorite={selectsFavorite} />
       })
     }
 
@@ -84,9 +107,22 @@ function App() {
         )
       })
     } */}
+
+        {/* {
+      snacks.map(({id,name,count})=>{
+        return(
+          <div className="card" key={id} onClick={()=>selectsFavorite(id)}>
+            <p>id: {id} </p>
+            <p>name: {name}</p>
+            <p>count: {count}</p>
+          </div>
+        )
+      })
+    } */}
      
     </>
   )
 }
 
 export default App
+
